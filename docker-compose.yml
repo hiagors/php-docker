@@ -14,3 +14,5 @@ mysql:
      - /var/lib/mysql
     environment:
      - MYSQL_ROOT_PASSWORD=docker
+    ports:
+     - "3306:3306"

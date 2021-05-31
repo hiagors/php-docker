@@ -17,7 +17,9 @@ class RequestValidator{
 
     public function __construct($request){
         $this->request = $request;
+        
         $this->TokensAutorizadosRepository = new TokensAutorizadosRepository();
+      
     }
 
     public function processarRequest(){
@@ -31,7 +33,7 @@ class RequestValidator{
     private function direcionarRequest(){
         if($this->request['metodo'] !== self::GET && $this->request['metodo'] !== self::DELETE){
             $this->dadosRequest = JsonUtil::tratarCorpoRequisicaoJson();
-            echo(json_encode($this->dadosRequest));
         }
+        $this->TokensAutorizadosRepository->validarToken(getallheaders()['Authorization']);
     }
 }

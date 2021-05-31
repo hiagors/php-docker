@@ -1,12 +1,9 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ERROR);
 
 define('HOST', '172.17.0.2');
 define('BANCO', 'api');
-define('USER', 'root');
+define('USUARIO', 'root');
 define('SENHA', 'docker');
 
 define('DS', DIRECTORY_SEPARATOR);
