@@ -8,7 +8,7 @@ use Util\JsonUtil;
 class RequestValidator{
 
     private $request;
-    private $dadosRequest = [];
+    private array $dadosRequest = [];
 
     const GET = 'GET';
     const DELETE = 'DELETE';
