@@ -6,7 +6,6 @@ class RotasUtil{
 
     public static function getRotas(){
         $urls = self::getUrls();
-        
         $request = [];
         $request['rota'] = strtoupper($urls[0]);
         $request['recurso'] = $urls[1] ?? null;
@@ -17,9 +16,7 @@ class RotasUtil{
     }
 
     public static function getUrls(){
-        $uri = str_replace('/' . DIR_PROJETO, '', $_SERVER['REQUEST_URI']);
-        
-        return explode('/', trim($uri,'/'));
+        return explode('/', trim($_SERVER['REQUEST_URI'],'/'));
     }
 
 }

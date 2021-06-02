@@ -29,7 +29,6 @@ class TokensAutorizadosRepository{
                 header('HTTP/1.0 401 Unauthorized', true, 401);        
                 throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_TOKEN_NAO_AUTORIZADO);
             }
-            echo'token autorizado';
         } else{
             header('HTTP/1.0 404 NOT FOUND', true, 404); 
             throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_TOKEN_VAZIO);

@@ -5,6 +5,7 @@ namespace Validator;
 use Util\ConstantesGenericasUtil;
 use Util\JsonUtil;
 use Repository\TokensAutorizadosRepository;
+use Service\UsuariosService;
 
 class RequestValidator{
 
@@ -12,8 +13,10 @@ class RequestValidator{
     private array $dadosRequest = [];
     private object $TokensAutorizadosRepository;
 
+
     const GET = 'GET';
     const DELETE = 'DELETE';
+    const USUARIOS = 'USUARIOS';
 
     public function __construct($request){
         $this->request = $request;
@@ -35,5 +38,21 @@ class RequestValidator{
             $this->dadosRequest = JsonUtil::tratarCorpoRequisicaoJson();
         }
         $this->TokensAutorizadosRepository->validarToken(getallheaders()['Authorization']);
+        $metodo = $this->request['metodo'];
+        return $this->$metodo();
+    }
+
+    private function get(){
+        $retorno = utf8_encode(ConstantesGenericasUtil::MSG_ERRO_TIPO_ROTA);
+        
+        if(in_array($this->request['rota'],  ConstantesGenericasUtil::TIPO_GET, 'strict')){
+            switch($this->request['rota']){
+                case self::USUARIOS: 
+                    $usuariosService = new UsuariosService($this->request);
+                    $retorno = $usuariosService->validarGet();
+                    echo(json_encode($retorno));
+                    return 1;
+            }
+        }
     }
 }
