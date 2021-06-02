@@ -2,7 +2,18 @@
 
 namespace Util;
 
+use Util\ConstantesGenericasUtil;
+
 class JsonUtil{
+
+    public function processarArray($retorno){
+        $dados = [];
+        $dados[ConstantesGenericasUtil::TIPO] = ConstantesGenericasUtil::TIPO_ERRO;
+
+        if((is_array($dados) && count($retorno) > 0) || strlen($retorno) > 10){
+            
+        }
+    }
 
     public static function tratarCorpoRequisicaoJson(){
         try{

@@ -50,9 +50,11 @@ class RequestValidator{
                 case self::USUARIOS: 
                     $usuariosService = new UsuariosService($this->request);
                     $retorno = $usuariosService->validarGet();
-                    echo(json_encode($retorno));
-                    return 1;
+                break;
+                default:
+                    throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
             }
         }
+        return $retorno;
     }
 }

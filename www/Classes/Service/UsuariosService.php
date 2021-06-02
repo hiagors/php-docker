@@ -29,9 +29,9 @@ class UsuariosService{
 
         if($retorno == null){
             throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_GENERICO);
-        } else {
-            return $retorno;
         }
+        
+        return $retorno;        
     }
 
     private function getById(){
