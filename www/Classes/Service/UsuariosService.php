@@ -41,38 +41,36 @@ class UsuariosService{
         return $retorno;        
     }
 
-    public function validarDelete()
-    {
+    public function validarDelete(){
         $retorno = null;
         $recurso = $this->dados['recurso'];
         if (in_array($recurso, self::RECURSOS_DELETE, true)) {
             if ($this->dados['id'] > 0) {
                 $retorno = $this->$recurso();
             } else {
-                throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_ID_OBRIGATORIO);
+                throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_ID_OBRIGATORIO);
             }
         } else {
-            throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
+            throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
         }
 
         if ($retorno === null) {
-            throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_GENERICO);
+            throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_GENERICO);
         }
 
         return $retorno;
     }
 
-    public function validarPost()
-    {
+    public function validarPost(){
         $retorno = null;
         $recurso = $this->dados['recurso'];
         if (in_array($recurso, self::RECURSOS_POST, true)) {
             $retorno = $this->$recurso();
         } else {
-            throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
+            throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
         }
         if ($retorno === null) {
-            throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_GENERICO);
+            throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_GENERICO);
         }
 
         return $retorno;
