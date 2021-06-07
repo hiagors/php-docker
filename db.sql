@@ -1,5 +1,7 @@
 CREATE DATABASE `api`;
 
+USE `api`;
+
 CREATE TABLE `Tokens_autorizados` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `token` varchar(150) NOT NULL,
