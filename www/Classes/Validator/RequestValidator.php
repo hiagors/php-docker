@@ -16,6 +16,7 @@ class RequestValidator{
 
     const GET = 'GET';
     const DELETE = 'DELETE';
+    const POST = 'POST';
     const USUARIOS = 'USUARIOS';
 
     public function __construct($request){
@@ -66,6 +67,23 @@ class RequestValidator{
                 case self::USUARIOS: 
                     $usuariosService = new UsuariosService($this->request);
                     $retorno = $usuariosService->validarDelete();
+                break;
+                default:
+                    throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
+            }
+        }
+        return $retorno;
+    }
+
+    private function post(){
+        $retorno = utf8_encode(ConstantesGenericasUtil::MSG_ERRO_TIPO_ROTA);
+        
+        if(in_array($this->request['rota'],  ConstantesGenericasUtil::TIPO_POST, 'strict')){
+            switch($this->request['rota']){
+                case self::USUARIOS: 
+                    $usuariosService = new UsuariosService($this->request);
+                    $usuariosService->setDadosCorpoRequest($this->dadosRequest);
+                    $retorno = $usuariosService->validarPost();
                 break;
                 default:
                     throw new \InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);

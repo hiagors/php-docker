@@ -13,6 +13,16 @@ class UsuariosRepository{
         $this->MySQL = new MySQL();
     }
 
+    public function insertUser($login, $senha){
+        $sql = 'INSERT INTO ' . self::TABELA . '(login, senha) VALUES (:login, :senha)';
+        $this->MySQL->getDb()->beginTransaction();
+        $stmt = $this->MySQL->getDb()->prepare($sql);
+        $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':senha', $senha);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
     public function getMySQL(){
         return $this->MySQL;
     }
